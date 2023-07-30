@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form th:action="@{/user5/members}" th:object="${dto}" method="post">
+        <table>
+            <tr>
+                <td>이름</td>
+                <td><input type="text" th:field="*{name}"></td>
+            </tr>
+            <tr>
+                <td>나이</td>
+                <td><input type="number" th:field="*{age}"></td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td><input type="text" th:field="*{addr}"></td>
+            </tr>
+            <tr>
+                <td>전화번호</td>
+                <td><input type="text" th:field="*{hp}"></td>
+            </tr>
+            <tr>
+                <td>생년월일</td>
+                <td><input type="date" th:field="*{birth}"></td>
+            </tr>
+            <tr>
+                <td>성별</td>
+                <td>
+                    <select th:name th:field="*{sex}">
+                        <option th:value="'남'" th:text="남"></option>
+                        <option th:value="'여'" th:text="여"></option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>제출</td>
+                <td><input type="submit" value="제출"></td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>

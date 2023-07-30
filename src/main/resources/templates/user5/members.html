@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .member_table:hover{
+            background-color: pink;
+            width: fit-content;
+        }
+        ul {
+          list-style-type: none;
+        }
+        .search_form{
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <a th:href="@{/user5/members/create-form}">유저추가</a>
+    <h1>It's members</h1>
+    <form th:object="${userCond}" method="get" class="search_form">
+        <table>
+            <tr>
+                <td>
+                    <input type="text" th:field="*{name}" placeholder="이름"/>
+                </td>
+                <td>
+                    <input type="text" th:field="*{maxAge}" placeholder="최대나이"/>
+                </td>
+                <td>
+                    <select th:field="*{sex}">
+                        <option th:value="''" th:text="성별선택"></option>
+                        <option th:value="'남'" th:text="남"></option>
+                        <option th:value="'여'" th:text="여"></option>
+                    </select>
+                </td>
+                <td>
+                    <input type="submit" value="검색"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <ul>
+    <th:block th:each="member : ${members}">
+        <li>
+            <a th:href="@{/user5/members/{uid}(uid=${member.id})}">
+                <div th:class="member_table">
+                    <table border="1">
+                        <tr>
+                            <td th:text="${member.name}"></td>
+                        </tr>
+                        <tr>
+                            <td th:text="${member.age}"></td>
+                        </tr>
+                        <tr>
+                            <td th:text="${member.birth}"></td>
+                        </tr>
+                        <tr>
+                            <td th:text="${member.sex}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </a>
+        </li>
+    </th:block>
+    </ul>
+</body>
+</html>

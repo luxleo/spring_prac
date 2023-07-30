@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .delete_form{
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <a th:href="@{/user5/members}">목록으로</a>
+    <a th:href="@{/user5/members/{uid}/updateForm(uid=${user.id})}">수정</a> <!--Todo:기록하기-->
+    <form class="delete_form" th:action="@{/user5/members/{uid}/delete(uid=${user.id})}" method="post" onsubmit="return makesure()"> <!--Todo:기록하기 2-->
+        <input type="submit" value="삭제">
+    </form>
+    <th:block>
+        <table border="1">
+            <tr>
+                <td>이름</td>
+                <td th:text="${user.name}"></td>
+            </tr>
+            <tr>
+                <td>나이</td>
+                <td th:text="${user.age}"></td>
+            </tr>
+            <tr>
+                <td>주소</td>
+                <td th:text="${user.addr}"></td>
+            </tr>
+            <tr>
+                <td>전화번호</td>
+                <td th:text="${user.hp}"></td>
+            </tr>
+            <tr>
+                <td>생일</td>
+                <td th:text="${user.birth}"></td>
+            </tr>
+            <tr>
+                <td>성별</td>
+                <td th:text="${user.sex}"></td>
+            </tr>
+        </table>
+    </th:block>
+    <script>
+        const makesure = ()=>{
+            let check = confirm("진짜로 삭제하실");
+            return check;
+        }
+    </script>
+</body>
+</html>
